@@ -23,36 +23,36 @@ The MedICI platform (built CodaLab) used for the challenge is provided by Jayash
 ### AWS instance settings
 * AWS Marketplace: Deep Learning AMI with Source Code (CUDA 8, Ubuntu)
 * Instance type: p2.xlarge (Filter by: GPU compute)
-* Dataset is 9.3 GB. Default size for p2.xlarge is 50 GB (which includes instant snapshot); so change the volume size to something larger.
+* Dataset is 9.3 GB- default size for p2.xlarge is 50 GB (which includes instant snapshot); so change the volume size to something larger
 
-#### SSH into the AWS instance
+### SSH into the AWS instance
 ```
 ssh -i path/To/myKey.pem ubuntu@Public-DNS(IPv4)
 ```
 
-#### Clone the repo
+### Clone the repo
 ```
 git clone https://github.com/ArbinTimilsina/PredictingAgeFromX-Rays.git
 cd PredictingAgeFromX-Rays
 ```
 
-#### Install the requirements
+### Install the requirements
 ```
 sudo pip install --upgrade pip
 sudo python3 -m pip install -r Requirements/GPU-Requirements.txt
 ```
 
-#### Switch Keras backend to TensorFlow
+### Switch Keras backend to TensorFlow
 ```
 KERAS_BACKEND=tensorflow python -c "from keras import backend"
 ```
 
-#### Download the dataset from kaggle
+### Download the dataset from kaggle
 ```
 sudo pip install kaggle
 ```
 
-**API credentials needs to be in the location ~/.kaggle/kaggle.json; so, from a different terminal**
+API credentials needs to be in the location ~/.kaggle/kaggle.json; so, **from a different terminal**
 ```
 scp -i path/To/myKey.pem ~/.kaggle/kaggle.json ubuntu@Public-DNS(IPv4):~/.kaggle/kaggle.json
 ```
@@ -62,12 +62,13 @@ chmod 600 ~/.kaggle/kaggle.json
 cd Input
 kaggle datasets download -d kmader/rsna-bone-age -p .
 unzip boneage-training-dataset.zip
-unzip boneage-test-dataset.zip
-rm *.zip
+mv boneage-training-dataset boneage-dataset
+mv boneage-training-dataset.csv boneage-dataset.csv
+rm *.zip boneage-test-dataset.csv
 cd ..
 ```
 
-####  Run the Jupyter notebook: First generate config file and then change the IP address config setting
+###  Run the Jupyter notebook: First generate config file and then change the IP address config setting
 ```
 jupyter notebook --generate-config
 sed -ie "s/#c.NotebookApp.ip = 'localhost'/#c.NotebookApp.ip = '*'/g" ~/.jupyter/jupyter_notebook_config.py
