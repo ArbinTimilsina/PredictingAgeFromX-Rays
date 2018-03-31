@@ -1,9 +1,9 @@
-# Predicting Age FromX-Rays
+# Predicting Age From X-Rays
 
-# Goal
-Develop an algorithm to determine the age of a child by utilizing pediatric hand radiographs (x-rays of hands). 
+## Goal
+Develop an algorithm to determine the age of a child by utilizing x-rays of hands (pediatric hand radiographs).
 
-# Dataset
+## Dataset
 The dataset was originally published on [CloudApp](http://rsnachallenges.cloudapp.net/competitions/4) as an RSNA challenge. However, for this project, it was downloaded from [Kaggle](https://www.kaggle.com/kmader/rsna-bone-age/data).
 ### Original Dataset Acknowledgements
 The Radiological Society of North America (RSNA) Radiology Informatics Committee (RIC) Pediatric Bone Age Machine Learning Challenge Organizing Committee: 
@@ -19,26 +19,26 @@ Data sets used in the Pediatric Bone Age Challenge have been contributed by Stan
 
 The MedICI platform (built CodaLab) used for the challenge is provided by Jayashree Kalpathy-Cramer, supported through NIH grants (U24CA180927) and a contract from Leidos.
 
-# Instructions to run this project on the AWS 
-## Instance settings
+## Instructions to run this project on the AWS 
+### AWS instance settings
 * AWS Marketplace: Deep Learning AMI with Source Code (CUDA 8, Ubuntu)
 * Instance type: p2.xlarge (Filter by: GPU compute)
+* Dataset is 9.3 GB. Default size for p2.xlarge is 50 GB (which includes instant snapshot); so change the volume size to something larger.
 
-### SSH into the AWS instance
+#### SSH into the AWS instance
 ```
 ssh -i path/To/myKey.pem ubuntu@Public-DNS(IPv4)
 ```
 
 #### Clone the repo
 ```
- git clone https://github.com/ArbinTimilsina/PredictingAgeFromX-Rays.git
- ```
- ```
- cd PredictingAgeFromX-Rays
+git clone https://github.com/ArbinTimilsina/PredictingAgeFromX-Rays.git
+cd PredictingAgeFromX-Rays
 ```
 
 #### Install the requirements
 ```
+sudo pip install --upgrade pip
 sudo python3 -m pip install -r Requirements/GPU-Requirements.txt
 ```
 
@@ -47,17 +47,24 @@ sudo python3 -m pip install -r Requirements/GPU-Requirements.txt
 KERAS_BACKEND=tensorflow python -c "from keras import backend"
 ```
 
-#### Download the dataset from kaggle; API credentials needs to be in the location ~/.kaggle/kaggle.json
+#### Download the dataset from kaggle
 ```
-scp -i path/to/key ~/.kaggle/kaggle.json ubuntu@Public-DNS(IPv4):~/.kaggle/kaggle.json
+sudo pip install kaggle
+```
+
+**API credentials needs to be in the location ~/.kaggle/kaggle.json; so, from a different terminal**
+```
+scp -i path/To/myKey.pem ~/.kaggle/kaggle.json ubuntu@Public-DNS(IPv4):~/.kaggle/kaggle.json
+```
+
+```
 chmod 600 ~/.kaggle/kaggle.json
-```
-```
-pip install kaggle
+cd Input
 kaggle datasets download -d kmader/rsna-bone-age -p .
-tar -xvzf rsna-bone-age.tgz
-mv
-rm rsna-bone-age.tgz
+unzip boneage-training-dataset.zip
+unzip boneage-test-dataset.zip
+rm *.zip
+cd ..
 ```
 
 ####  Run the Jupyter notebook: First generate config file and then change the IP address config setting
