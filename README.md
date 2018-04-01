@@ -77,5 +77,5 @@ sudo apt install emacs
 ```
 jupyter notebook --generate-config
 sed -ie "s/#c.NotebookApp.ip = 'localhost'/#c.NotebookApp.ip = '*'/g" ~/.jupyter/jupyter_notebook_config.py
-jupyter notebook --ip=Public-DNS(IPv4) --no-browser
+jupyter notebook --ip=0.0.0.0 --no-browser
 ```
