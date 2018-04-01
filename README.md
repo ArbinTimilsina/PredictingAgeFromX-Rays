@@ -39,7 +39,7 @@ cd PredictingAgeFromX-Rays
 ### Install the requirements
 ```
 sudo pip install --upgrade pip
-sudo python3 -m pip install -r Requirements/GPU-Requirements.txt
+not needed for the current AWS instance: sudo python3 -m pip install -r Requirements/GPU-Requirements.txt
 ```
 
 ### Switch Keras backend to TensorFlow
@@ -68,9 +68,14 @@ rm *.zip boneage-test-dataset.csv
 cd ..
 ```
 
+### Install emacs
+```
+sudo apt install emacs
+```
+
 ###  Run the Jupyter notebook: First generate config file and then change the IP address config setting
 ```
 jupyter notebook --generate-config
 sed -ie "s/#c.NotebookApp.ip = 'localhost'/#c.NotebookApp.ip = '*'/g" ~/.jupyter/jupyter_notebook_config.py
-jupyter notebook --ip=0.0.0.0 --no-browser
+jupyter notebook --ip=Public-DNS(IPv4) --no-browser
 ```
