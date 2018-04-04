@@ -1,8 +1,5 @@
 # Predicting Age From X-Rays
 
-## Goal
-Develop an algorithm to determine the age of a child by utilizing x-rays of hands (pediatric hand radiographs).
-
 ## Dataset
 The dataset was originally published on [CloudApp](http://rsnachallenges.cloudapp.net/competitions/4) as an RSNA challenge. However, for this project, it was downloaded from [Kaggle](https://www.kaggle.com/kmader/rsna-bone-age/data).
 ### Original Dataset Acknowledgements
