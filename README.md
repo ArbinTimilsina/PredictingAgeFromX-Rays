@@ -39,7 +39,8 @@ cd PredictingAgeFromX-Rays
 ### Install the requirements
 ```
 sudo pip install --upgrade pip
-not needed for the current AWS instance: sudo python3 -m pip install -r Requirements/GPU-Requirements.txt
+Note: not needed for the current AWS instance 
+sudo python3 -m pip install -r Requirements/GPU-Requirements.txt
 ```
 
 ### Switch Keras backend to TensorFlow
